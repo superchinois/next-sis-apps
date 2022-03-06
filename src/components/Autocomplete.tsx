@@ -1,49 +1,22 @@
-import * as React from 'react';
+import React, {useState} from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CircularProgress from '@mui/material/CircularProgress';
 
-interface Film {
-  title: string;
-  year: number;
+interface Items {
+  itemcode: string;
+  itemname: string;
 }
 
-function sleep(delay = 0) {
-  return new Promise((resolve) => {
-    setTimeout(resolve, delay);
-  });
-}
+type AutocompleteProps = {
+    items: Items;
+};
 
-export default function Asynchronous() {
-  const [open, setOpen] = React.useState(false);
-  const [options, setOptions] = React.useState<readonly Film[]>([]);
+const MyAutocomplete: React.FC<AutocompleteProps> = (props) => {
+  const {items} = props;
+  const [options, setOptions] = useState<readonly Items[]>(items);
+  const [open, setOpen] = useState(false);
   const loading = open && options.length === 0;
-
-  React.useEffect(() => {
-    let active = true;
-
-    if (!loading) {
-      return undefined;
-    }
-
-    (async () => {
-      await sleep(1e3); // For demo purposes.
-
-      if (active) {
-        setOptions([...topFilms]);
-      }
-    })();
-
-    return () => {
-      active = false;
-    };
-  }, [loading]);
-
-  React.useEffect(() => {
-    if (!open) {
-      setOptions([]);
-    }
-  }, [open]);
 
   return (
     <Autocomplete
@@ -56,10 +29,15 @@ export default function Asynchronous() {
       onClose={() => {
         setOpen(false);
       }}
-      isOptionEqualToValue={(option, value) => option.title === value.title}
-      getOptionLabel={(option) => option.title}
+      isOptionEqualToValue={(option, value) => option.itemname === value.itemname}
+      getOptionLabel={(option) => option.itemname}
       options={options}
       loading={loading}
+      renderOption={(props, option) => {
+        return (
+          <li {...props} key={option.itemcode}>{option.itemname}</li>
+        );
+      }}
       renderInput={(params) => (
         <TextField
           {...params}
@@ -78,3 +56,4 @@ export default function Asynchronous() {
     />
   );
 }
+export default MyAutocomplete;

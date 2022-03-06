@@ -3,17 +3,19 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import Link from '../components/Link';
 import JsBarcode from 'jsbarcode';
 import React, {useEffect, useState} from 'react';
-import ProTip from '../components/ProTip';
-import Copyright from '../components/Copyright';
-import RackTag from '../components/TagRack';
-import PageStyle from '../../styles/PageStyle';
 import useSWR from 'swr';
 
+import Link        from '../components/Link';
+import ProTip      from '../components/ProTip';
+import Copyright   from '../components/Copyright';
+import RackTag     from '../components/TagRack';
+import {fetcher}   from '../utils/helpers';
+import PageStyle   from '../../styles/PageStyle';
+
+
 const pageStyle = PageStyle.css.pageStyle;
-const fetcher = (url) => fetch(url).then(res=>res.json());
 
 const About: NextPage = () => {
   const [tags, setTags] = useState([]);
