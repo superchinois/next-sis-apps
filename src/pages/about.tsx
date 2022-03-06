@@ -30,6 +30,8 @@ const About: NextPage = () => {
       <Box
         sx={{
           my: 4,
+          marginTop:"0px",
+          marginBottom:"0px",
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
