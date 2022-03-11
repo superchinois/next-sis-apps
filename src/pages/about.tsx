@@ -7,12 +7,13 @@ import JsBarcode from 'jsbarcode';
 import React, {useEffect, useState} from 'react';
 import useSWR from 'swr';
 
-import Link        from '../components/Link';
-import ProTip      from '../components/ProTip';
-import Copyright   from '../components/Copyright';
-import RackTag     from '../components/TagRack';
-import {fetcher}   from '../utils/helpers';
-import PageStyle   from '../../styles/PageStyle';
+import Link         from '../components/Link';
+import ProTip       from '../components/ProTip';
+import Copyright    from '../components/Copyright';
+import RackTag      from '../components/TagRack';
+import {fetcher}    from '../utils/helpers';
+import PageStyle    from '../../styles/PageStyle';
+import CustomFooter from '../components/DataGridDemo';
 
 
 const pageStyle = PageStyle.css.pageStyle;
@@ -50,6 +51,7 @@ const About: NextPage = () => {
             Go to the home page
           </Button>
         </Box>
+        <CustomFooter/>
         {tags.length>0?
           (
             <Box sx={pageStyle}>

@@ -6,6 +6,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 interface Items {
   itemcode: string;
   itemname: string;
+  onhand: string;
 }
 
 type AutocompleteProps = {
@@ -21,7 +22,7 @@ const MyAutocomplete: React.FC<AutocompleteProps> = (props) => {
   return (
     <Autocomplete
       id="asynchronous-demo"
-      sx={{ width: 300 }}
+      sx={{ width: 600 }}
       open={open}
       onOpen={() => {
         setOpen(true);
@@ -35,13 +36,13 @@ const MyAutocomplete: React.FC<AutocompleteProps> = (props) => {
       loading={loading}
       renderOption={(props, option) => {
         return (
-          <li {...props} key={option.itemcode}>{option.itemname}</li>
+          <li {...props} key={option.itemcode}>{option.itemname} - {option.onhand}</li>
         );
       }}
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Asynchronous"
+          label="Enter a item name"
           InputProps={{
             ...params.InputProps,
             endAdornment: (

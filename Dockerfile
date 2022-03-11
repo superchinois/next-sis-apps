@@ -1,4 +1,4 @@
-FROM node:14.14.0-buster
+FROM node:16-bullseye
 
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH

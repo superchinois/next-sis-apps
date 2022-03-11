@@ -16,6 +16,8 @@
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.4.2",
     "@mui/material": "^5.4.3",
+    "@mui/x-data-grid":"^5.6.1",
+    "@mui/x-data-grid-generator":"^5.6.1",
     "@types/node":"^17.0.19",
     "@apollo/client":"3.5.9",
     "graphql":"16.3.0",
