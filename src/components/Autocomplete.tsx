@@ -22,7 +22,7 @@ const MyAutocomplete: React.FC<AutocompleteProps> = (props) => {
   return (
     <Autocomplete
       id="asynchronous-demo"
-      sx={{ width: 600 }}
+      sx={{ width: '100%' }}
       open={open}
       onOpen={() => {
         setOpen(true);

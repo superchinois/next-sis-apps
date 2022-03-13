@@ -33,11 +33,12 @@ const Tags: NextPage = ({data}) => {
   );
 };
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
     const url = `${ConfigApi.API_URL}/items`;
     const data = await fetcher(url)
     return {
       props: {data:data.filter(_=>_.sellitem !=='N')}, // will be passed to the page component as props
+      revalidate: 600,
     }
   }
 export default Tags;
