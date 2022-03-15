@@ -17,6 +17,22 @@ const MyAutocomplete: React.FC<AutocompleteProps> = (props) => {
   const {items} = props;
   const [options, setOptions] = useState<readonly Items[]>(items);
   const [open, setOpen] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+
+  const handleOpen = () => {
+    if (inputValue.length > 0) {
+      setOpen(true);
+    }
+  };
+  const handleInputChange = (event, newInputValue) => {
+    setInputValue(newInputValue);
+    if (newInputValue.length > 0) {
+      setOpen(true);
+    } else {
+      setOpen(false);
+    }
+  };
+
   const loading = open && options.length === 0;
 
   return (
@@ -24,9 +40,7 @@ const MyAutocomplete: React.FC<AutocompleteProps> = (props) => {
       id="asynchronous-demo"
       sx={{ width: '100%' }}
       open={open}
-      onOpen={() => {
-        setOpen(true);
-      }}
+      onOpen={handleOpen}
       onClose={() => {
         setOpen(false);
       }}
@@ -34,6 +48,8 @@ const MyAutocomplete: React.FC<AutocompleteProps> = (props) => {
       getOptionLabel={(option) => option.itemname}
       options={options}
       loading={loading}
+      inputValue={inputValue}
+      onInputChange={handleInputChange}
       renderOption={(props, option) => {
         return (
           <li {...props} key={option.itemcode}>{option.itemname} - {option.onhand}</li>
