@@ -2,24 +2,20 @@ import React, {useState} from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CircularProgress from '@mui/material/CircularProgress';
-
-interface Items {
-  itemcode: string;
-  itemname: string;
-  onhand: string;
-}
+import Item from '../types/Item';
 
 type AutocompleteProps = {
-    items: Items;
+    items: Item;
 };
 
 const MyAutocomplete: React.FC<AutocompleteProps> = (props) => {
-  const {items} = props;
-  const [options, setOptions] = useState<readonly Items[]>(items);
+  const {items, handleSelectedItem} = props;
+  const [options, setOptions] = useState<readonly Item[]>(items);
   const [open, setOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
   const handleOpen = () => {
+    handleSelectedItem(null);
     if (inputValue.length > 0) {
       setOpen(true);
     }
@@ -32,7 +28,10 @@ const MyAutocomplete: React.FC<AutocompleteProps> = (props) => {
       setOpen(false);
     }
   };
+  const onChange = (event: React.SyntheticEvent, value: Item | Array<Item>, reason: string, details?: string)=>{
+     handleSelectedItem(value);
 
+  };
   const loading = open && options.length === 0;
 
   return (
@@ -49,6 +48,7 @@ const MyAutocomplete: React.FC<AutocompleteProps> = (props) => {
       options={options}
       loading={loading}
       inputValue={inputValue}
+      onChange={onChange}
       onInputChange={handleInputChange}
       renderOption={(props, option) => {
         return (
