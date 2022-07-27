@@ -30,8 +30,8 @@ const MyAutocomplete: React.FC<AutocompleteProps> = (props) => {
   };
   const onChange = (event: React.SyntheticEvent, value: Item | Array<Item>, reason: string, details?: string)=>{
      handleSelectedItem(value);
-
   };
+
   const loading = open && options.length === 0;
 
   return (
@@ -43,6 +43,7 @@ const MyAutocomplete: React.FC<AutocompleteProps> = (props) => {
       onClose={() => {
         setOpen(false);
       }}
+      onChange={onChange}
       isOptionEqualToValue={(option, value) => option.itemname === value.itemname}
       getOptionLabel={(option) => option.itemname}
       options={options}
