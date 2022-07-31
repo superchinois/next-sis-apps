@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import Box from '@mui/material/Box';
 import rackStyle from '../../styles/RackTagStyle';
-import {Tag} from '../types/Tags'
+import {Tag} from '../types/Tag'
 
 const packStyle = rackStyle.css.pack_style;
 const ttc_style = rackStyle.css.ttc_style;

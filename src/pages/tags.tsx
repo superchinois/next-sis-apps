@@ -76,10 +76,11 @@ const Tags: NextPage = ({data}) => {
 export async function getStaticProps(context) {
     const url = `${ConfigApi.API_URL}/items`;
     const data = await fetcher(url);
-    const fields=["itemcode", "itemname", "onhand", "vente", "rate", "codebars", "pcb_achat", "pcb_vente"];
+    //const fields=["itemcode", "itemname", "onhand", "vente", "rate", "codebars", "pcb_achat", "pcb_vente"];
+    const fields=["itemcode", "itemname", "onhand", "sellitem"];
     const output_data = data.map(i=>fields.reduce((acc, f)=>Object.assign(acc, {[f]:i[f]}), {}));
     return {
-      props: {data:output_data.filter(_=>_.sellitem !=='N')}, // will be passed to the page component as props
+      props: {data:output_data.filter(_=>_.sellitem !='N')}, // will be passed to the page component as props
       revalidate: 600,
     }
   }
