@@ -1,5 +1,6 @@
-FROM node:16-bullseye
+FROM node:18-bullseye
 
+ENV TZ="Indian/Reunion"
 WORKDIR /app
 ENV PATH /app/node_modules/.bin:$PATH
 COPY package*.json ./
